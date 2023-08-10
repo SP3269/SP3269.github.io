@@ -20,5 +20,5 @@ jobs:
         shell: pwsh
         run: |
           Write-Output "New GUID"
-          
+          Get-ChildItem
           (New-Guid).Guid
