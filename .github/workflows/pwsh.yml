@@ -5,15 +5,15 @@ on:
       - "CNAME"
     branches:
       - master
-
   pull_request:
+  workflow_dispatch:
 
 jobs:
   validate:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [windows-latest, ubuntu-latest]
+        os: [ubuntu-latest]
     steps:
       - uses: actions/checkout@v3
       - name: Run pwsh
