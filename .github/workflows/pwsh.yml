@@ -19,6 +19,14 @@ jobs:
       - name: Run pwsh
         shell: pwsh
         run: |
-          Write-Output "New GUID"
-          Get-ChildItem
-          (New-Guid).Guid
+          Get-Content index.html
+          (New-Guid).Guid | Out-File index.html
+          Get-Content index.html
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "robot"
+          git config --global user.email "robot@libertysandwich.com"
+
+          git add -A
+          git commit --allow-empty --allow-empty-message -m ""
+          git push
