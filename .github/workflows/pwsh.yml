@@ -1,0 +1,24 @@
+on:
+  push:
+    paths-ignore:
+      - "**.md"
+      - "CNAME"
+    branches:
+      - master
+
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@v1
+      - name: Run pwsh
+        shell: pwsh
+        run: |
+          Write-Output "New GUID"
+          
+          (New-Guid).Guid
