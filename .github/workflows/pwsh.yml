@@ -9,6 +9,7 @@ on:
   workflow_dispatch:
   schedule:
     - cron:  '0 6 * * *'
+      timezone: "Australia/Melbourne"
 
 jobs:
   validate:
@@ -17,10 +18,11 @@ jobs:
       matrix:
         os: [ubuntu-latest]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v7
       - name: Run pwsh
         shell: pwsh
         run: |
+          Get-Content $env:GITHUB_EVENT_PATH
           Get-Content index.html
           (New-Guid).Guid | Out-File index.html
           Get-Content index.html
